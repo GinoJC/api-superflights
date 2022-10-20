@@ -15,6 +15,14 @@ export class UserService {
     return await bcrypt.hash(password, salt);
   }
 
+  async checkPassword(password: string, passwordDB: string): Promise<boolean> {
+    return await bcrypt.compare(password, passwordDB);
+  }
+
+  async findByUsername(username: string): Promise<IUser> {
+    return await this.model.findOne({ username });
+  }
+
   async create(userDTO: UserDTO): Promise<IUser> {
     const hash = await this.hashPassword(userDTO.password);
     const newUser = new this.model({ ...userDTO, password: hash });

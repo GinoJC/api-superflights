@@ -9,10 +9,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PassengerService } from 'src/passenger/passenger.service';
 import { FlightDTO } from './dto/flight.dto';
 import { FlightService } from './flight.service';
 
+@ApiTags('flights')
 @Controller('api/v1/flight')
 export class FlightController {
   constructor(
